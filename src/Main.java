@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -47,14 +45,27 @@ public class Main {
             case 3:
                 System.out.println("Digite o valor que ira transferir:");
                 int valorTranferido = sc.nextInt();
-                saldo -= valorTranferido;
-                System.out.println(menu+"Seu novo saldo é de " + saldo + menu);
-                escolhaMenu = sc.nextInt();
-                escolhaMenu = 0;
+
+                if(valorTranferido <= saldo){
+                    saldo -= valorTranferido;
+                    System.out.println(menu+"Seu novo saldo é de " + saldo + menu);
+                    escolhaMenu = sc.nextInt();
+                    escolhaMenu = 0;
+                }else{
+                    System.out.println("Valor insulficiente, seu saldo é menor, saldo de "+saldo);
+                    System.out.println("Digite outro valor:");
+                    valorTranferido = sc.nextInt();
+                    if (valorTranferido < saldo) {
+                        System.out.println("Voce quer tranferir valor maior que o saldo");
+                        System.out.println("Programa encerrado!!!!");
+                    }
+                }
+
             case 4:
                 break;
+            default:
+                break;
         }
-
 
     }
 }
